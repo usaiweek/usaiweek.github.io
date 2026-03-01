@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>U.S. AI Week 2027 - Coming Soon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+            --dark-bg: #0F0F1E;
+            --card-bg: #1A1A2E;
+            --text-primary: #FFFFFF;
+            --text-secondary: #94A3B8;
+            --accent-blue: #60A5FA;
+            --accent-purple: #A78BFA;
+            --success: #10B981;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background: var(--dark-bg);
+            overflow: hidden;
+        }
+
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: var(--primary-gradient);
+            top: -200px;
+            left: -200px;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, #7C3AED 0%, #EC4899 100%);
+            bottom: -150px;
+            right: -150px;
+            animation-delay: 5s;
+        }
+
+        .orb-3 {
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(135deg, #06B6D4 0%, #4F46E5 100%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(50px, 30px); }
+            50% { transform: translate(30px, -50px); }
+            75% { transform: translate(-30px, 20px); }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            padding: 30px 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border-radius: 12px;
+            padding: 8px;
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0 40px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(124, 58, 237, 0.2);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            border-radius: 50px;
+            font-size: 14px;
+            color: var(--accent-purple);
+            margin-bottom: 30px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            animation: fadeInDown 1s ease;
+        }
+
+        h1 {
+            font-size: clamp(40px, 8vw, 72px);
+            font-weight: 700;
+            margin-bottom: 25px;
+            line-height: 1.1;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .gradient-text {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: clamp(18px, 3vw, 24px);
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-weight: 400;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .event-details {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin: 30px 0 50px;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+
+        .detail-icon {
+            font-size: 20px;
+        }
+
+        /* Stats Section */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+            animation: fadeInUp 1s ease 0.8s both;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(124, 58, 237, 0.5);
+            box-shadow: 0 10px 40px rgba(124, 58, 237, 0.2);
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Signup Section */
+        .signup-section {
+            margin: 80px 0;
+            animation: fadeInUp 1s ease 1s both;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 50px;
+        }
+
+        .signup-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .signup-card {
+            background: var(--card-bg);
+            padding: 35px;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .signup-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary-gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .signup-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .signup-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(124, 58, 237, 0.5);
+            box-shadow: 0 20px 60px rgba(124, 58, 237, 0.15);
+        }
+
+        .card-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .card-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        /* Form */
+        .signup-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input[type="email"],
+        input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 16px;
+            font-family: 'Space Grotesk', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        input[type="email"]:focus,
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--accent-purple);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .submit-btn {
+            padding: 15px;
+            background: var(--primary-gradient);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Space Grotesk', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            padding: 15px;
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid var(--success);
+            border-radius: 10px;
+            color: var(--success);
+            text-align: center;
+            font-weight: 500;
+            animation: slideIn 0.5s ease;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        /* Features Section */
+        .features {
+            margin: 80px 0;
+            text-align: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-item {
+            padding: 30px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(124, 58, 237, 0.5);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .feature-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 0 30px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            background: var(--primary-gradient);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-text {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 40px 0 20px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .signup-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .event-details {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <img src="/img/usaiweek_logo.jpg" alt="U.S. AI Week Logo">
+                </div>
+                <div class="logo-text">U.S. AI WEEK</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="badge">🚀 September 2027 • San Francisco</div>
+            <h1>
+                Where America's <span class="gradient-text">AI Future</span><br>Takes Shape
+            </h1>
+            <p class="subtitle">
+                The premier comprehensive AI gathering bringing together 5,000+<br>researchers, founders, investors, and policymakers
+            </p>
+            <div class="event-details">
+                <div class="detail-item">
+                    <span class="detail-icon">📅</span>
+                    <span>September 2027</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-icon">📍</span>
+                    <span>San Francisco, CA</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-icon">🎯</span>
+                    <span>3-Day Comprehensive Event</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="container">
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">5K+</div>
+                <div class="stat-label">Expected Attendees</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">World-Class Speakers</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">150+</div>
+                <div class="stat-label">Exhibiting Companies</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Days of Innovation</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Signup Section -->
+    <section class="signup-section">
+        <div class="container">
+            <h2 class="section-title">Be Part of History</h2>
+            <div class="signup-grid">
+                <!-- Speakers -->
+                <div class="signup-card">
+                    <div class="card-icon">🎤</div>
+                    <h3 class="card-title">Speakers</h3>
+                    <p class="card-description">
+                        Share your expertise on the main stage. Help shape the conversation around AI's future.
+                    </p>
+                    <form class="signup-form" onsubmit="handleSubmit(event, 'speaker')">
+                        <input type="text" placeholder="Full Name" required>
+                        <input type="email" placeholder="Email Address" required>
+                        <input type="text" placeholder="Organization" required>
+                        <button type="submit" class="submit-btn">Apply to Speak</button>
+                        <div class="success-message" id="success-speaker">
+                            ✓ Thank you! We'll be in touch soon.
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Sponsors -->
+                <div class="signup-card">
+                    <div class="card-icon">🤝</div>
+                    <h3 class="card-title">Sponsors</h3>
+                    <p class="card-description">
+                        Position your brand at the forefront of AI innovation. Limited partnership opportunities.
+                    </p>
+                    <form class="signup-form" onsubmit="handleSubmit(event, 'sponsor')">
+                        <input type="text" placeholder="Company Name" required>
+                        <input type="email" placeholder="Email Address" required>
+                        <input type="text" placeholder="Title" required>
+                        <button type="submit" class="submit-btn">Explore Sponsorship</button>
+                        <div class="success-message" id="success-sponsor">
+                            ✓ Thank you! Partnership team will contact you.
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Exhibitors -->
+                <div class="signup-card">
+                    <div class="card-icon">🏢</div>
+                    <h3 class="card-title">Exhibitors</h3>
+                    <p class="card-description">
+                        Showcase your AI solutions to 5,000+ qualified decision-makers and innovators.
+                    </p>
+                    <form class="signup-form" onsubmit="handleSubmit(event, 'exhibitor')">
+                        <input type="text" placeholder="Company Name" required>
+                        <input type="email" placeholder="Email Address" required>
+                        <input type="text" placeholder="Title" required>
+                        <button type="submit" class="submit-btn">Reserve Booth Space</button>
+                        <div class="success-message" id="success-exhibitor">
+                            ✓ Thank you! Exhibition team will reach out.
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Attendees -->
+                <div class="signup-card">
+                    <div class="card-icon">🎟️</div>
+                    <h3 class="card-title">Attendees</h3>
+                    <p class="card-description">
+                        Join the most comprehensive AI gathering. Network with leaders shaping AI's future.
+                    </p>
+                    <form class="signup-form" onsubmit="handleSubmit(event, 'attendee')">
+                        <input type="text" placeholder="Full Name" required>
+                        <input type="email" placeholder="Email Address" required>
+                        <input type="text" placeholder="Organization" required>
+                        <button type="submit" class="submit-btn">Get Early Access</button>
+                        <div class="success-message" id="success-attendee">
+                            ✓ You're on the list! Early bird pricing coming soon.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">What to Expect</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">Conference</h3>
+                    <p class="feature-desc">
+                        100+ speakers across 5 tracks covering AI research, enterprise adoption, policy, and ethics
+                    </p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🚀</div>
+                    <h3 class="feature-title">Innovation Expo</h3>
+                    <p class="feature-desc">
+                        150+ companies showcasing cutting-edge AI solutions, from startups to tech giants
+                    </p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🏆</div>
+                    <h3 class="feature-title">Awards Gala</h3>
+                    <p class="feature-desc">
+                        Black-tie ceremony celebrating AI's most impactful innovations and leaders
+                    </p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🤖</div>
+                    <h3 class="feature-title">AI's Inflection Point</h3>
+                    <p class="feature-desc">
+                        Marking 5 years since ChatGPT—where AI transitions from innovation to institution
+                    </p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💡</div>
+                    <h3 class="feature-title">Multi-Stakeholder</h3>
+                    <p class="feature-desc">
+                        Bringing together researchers, founders, investors, policymakers, and industry leaders
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo-container">
+                    <div class="logo-icon">
+                        <img src="/img/usaiweek_logo.jpg" alt="U.S. AI Week Logo">
+                    </div>
+                    <div class="logo-text">U.S. AI WEEK</div>
+                </div>
+                <div class="social-links">
+                    <a href="#" class="social-link">𝕏</a>
+                    <a href="#" class="social-link">in</a>
+                    <a href="#" class="social-link">📧</a>
+                </div>
+                <p class="footer-text">
+                    © 2026 Eventus Nation, LLC. All rights reserved.
+                </p>
+                <p class="footer-text">
+                    <a href="mailto:hello@usaiweek.com" style="color: var(--text-secondary); text-decoration: none;">hello@usaiweek.com</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function handleSubmit(event, type) {
+            event.preventDefault();
+            
+            // Get form data
+            const form = event.target;
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
+            
+            // In production, you'd send this to your backend/email service
+            // For now, we'll just show success message
+            console.log(`${type} signup:`, data);
+            
+            // Hide form, show success message
+            const successMsg = document.getElementById(`success-${type}`);
+            successMsg.classList.add('show');
+            form.querySelector('.submit-btn').disabled = true;
+            form.querySelector('.submit-btn').textContent = '✓ Submitted';
+            form.querySelector('.submit-btn').style.opacity = '0.7';
+            
+            // Optional: Send to Google Sheets, Airtable, or email service
+            // Example: Send to email (you'd need a backend endpoint)
+            /*
+            fetch('YOUR_BACKEND_ENDPOINT', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    type: type,
+                    ...data
+                })
+            });
+            */
+            
+            return false;
+        }
+
+        // Optional: Add smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add parallax effect to orbs
+        document.addEventListener('mousemove', (e) => {
+            const orbs = document.querySelectorAll('.gradient-orb');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            orbs.forEach((orb, index) => {
+                const speed = (index + 1) * 20;
+                const xMove = (x - 0.5) * speed;
+                const yMove = (y - 0.5) * speed;
+                orb.style.transform = `translate(${xMove}px, ${yMove}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
