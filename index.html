@@ -1147,16 +1147,13 @@ footer {
 let selectedInterest = '';
 
 function selectInterest(btn) {
-  const interest = btn.getAttribute('data-interest');
+  selectedInterest = btn.getAttribute('data-interest');
   const titleEl = btn.querySelector('.apply-option-title');
-  const title = titleEl ? titleEl.textContent : interest;
+  const title = titleEl ? titleEl.textContent : selectedInterest;
 
-  Tally.openPopup('A76ZMy', {
-    width: 700,
-    hiddenFields: {
-      interest: title
-    }
-  });
+  document.getElementById('applyStep1').style.display = 'none';
+  document.getElementById('applyStep2').style.display = 'block';
+  document.getElementById('selectedInterestDisplay').textContent = 'Interest: ' + title;
 }
 
 function goBack() {
