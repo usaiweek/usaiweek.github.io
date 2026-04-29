@@ -6,6 +6,7 @@
 <title>U.S. AI Week™ — A Leadership Convening Shaping the Future of the AI Economy</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script async src="https://tally.so/widgets/embed.js"></script>
 <style>
 :root {
   --navy: #0F1A2E;
@@ -1063,7 +1064,7 @@ footer {
       <div class="apply-step apply-step-1" id="applyStep1">
         <p class="apply-label">I am interested in:</p>
         <div class="apply-options">
-          <button class="apply-option" data-interest="sponsorship" onclick="selectInterest(this)">
+          <button class="apply-option" data-interest="sponsorship" onclick="selectInterest(this)?Interest=value">
             <span class="apply-option-icon">◆</span>
             <span class="apply-option-title">Sponsorship</span>
             <span class="apply-option-desc">Partner with U.S. AI Week™ as a Founding, Platinum, Gold, Silver, or Startup sponsor</span>
@@ -1146,13 +1147,16 @@ footer {
 let selectedInterest = '';
 
 function selectInterest(btn) {
-  selectedInterest = btn.getAttribute('data-interest');
+  const interest = btn.getAttribute('data-interest');
   const titleEl = btn.querySelector('.apply-option-title');
-  const title = titleEl ? titleEl.textContent : selectedInterest;
+  const title = titleEl ? titleEl.textContent : interest;
 
-  document.getElementById('applyStep1').style.display = 'none';
-  document.getElementById('applyStep2').style.display = 'block';
-  document.getElementById('selectedInterestDisplay').textContent = 'Interest: ' + title;
+  Tally.openPopup('A76ZMy', {
+    width: 700,
+    hiddenFields: {
+      interest: title
+    }
+  });
 }
 
 function goBack() {
